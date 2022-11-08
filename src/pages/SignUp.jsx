@@ -1,7 +1,11 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import { AuthContext } from "../Contexts/AuthProvider";
 
 function Login() {
+  const { signUp, updateUsr } = useContext(AuthContext);
   const [inputText, setInputText] = useState({
     email: "",
     name: "",
@@ -9,10 +13,70 @@ function Login() {
     pass: "",
   });
   const [btnState, setBtnState] = useState(false);
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setBtnState(true);
+
+    signUp(inputText.email, inputText.pass)
+      .then((result) => {
+        const usr = result.user;
+        /// update the user
+        updateUsr({
+          displayName: inputText.name,
+          photoURL: inputText.img,
+        })
+          .then((res) => {
+            setInputText({
+              email: "",
+              name: "",
+              img: "",
+              pass: "",
+            });
+            toast.success("Your Account Is created Successfully!", {
+              position: "top-center",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+            });
+            navigate("/");
+            setBtnState(false);
+            console.log(usr);
+          })
+          .catch((err) => {
+            setBtnState(false);
+            toast.error(err.message, {
+              position: "top-center",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+            });
+            console.log("inside", err);
+          });
+      })
+      .catch((err) => {
+        setBtnState(false);
+        toast.error(err.message, {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+        console.log(err);
+      });
   };
 
   return (
@@ -81,10 +145,10 @@ function Login() {
               />
             </div>
             <div className="mt-2 text-sm">
-              New Here?{" "}
-              <Link to={"/signup"} className="text-primary hover:underline">
+              Already Have an account?{" "}
+              <Link to={"/login"} className="text-primary hover:underline">
                 {" "}
-                Create an Accout.{" "}
+                Login.{" "}
               </Link>
             </div>
             <div className="mt-6">

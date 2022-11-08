@@ -47,7 +47,7 @@ function Navbar() {
               className="translate-y-0 flex items-center duration-300 h-full hover:bg-white hover:-translate-y-2 hover:cursor-pointer normal-case text-xl"
             >
               <img className="w-10 mr-2 md:mr-2" src={logo} alt="" />
-              <h1 className="text-xl cursor-pointer font-bold md:text-3xl lg:text-3xl">
+              <h1 className="text-xl cursor-pointer font-bold md:text-3xl lg:text-3xl font-mono">
                 Your Kitch
               </h1>
             </Link>

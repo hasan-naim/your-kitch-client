@@ -13,7 +13,7 @@ function Banner() {
             <h1 className="text-white text-xl md:text-2xl lg:text-6xl font-bold">
               Welcome to Your Own Kitchen
             </h1>
-            <p className="text-white text-sm lg:text-md pt-4">
+            <p className="text-white font-sans text-sm lg:text-lg pt-4">
               Here you will find your favorite meal. Your meal will be delivered
               <br></br>
               to you in 30 minutes. You can enjoy these meals with your family,

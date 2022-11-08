@@ -1,0 +1,139 @@
+import React from "react";
+import "./ContactUs.css";
+function FAQ() {
+  return (
+    <div>
+      <div className="py-12">
+        <div className="container">
+          <h1 className="text-center text-neutral font-bold text-4xl lg:text-5xl mb-14 font-mono">
+            Contact Us
+          </h1>
+          <div className="grid lg:grid-cols-2 text-white">
+            <div className="gradientBg p-20">
+              <h1 className="text-3xl lg:text-5xl font-extrabold text-white">
+                100%<br></br> Satisfaction <br />
+                Guaranteed
+              </h1>
+              <p className="mt-4 font-light">
+                Now you can run your entire restaurant from one tablet.
+                Seamlessly sync all your orders in one place, manage multiple
+                brands, and get valuable insights and metrics on your business.
+              </p>
+              <h2 className="text-xl font-bold lg:text-2xl mt-8 ">
+                What will be the next step?
+              </h2>
+              <p className="py-1 font-light mt-4 flex gap-2">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  className="w-6 h-6"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M4.5 12.75l6 6 9-13.5"
+                  />
+                </svg>
+                We'll prepare the proposal.
+              </p>
+              <p className="py-1 font-light flex gap-2">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  className="w-6 h-6"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M4.5 12.75l6 6 9-13.5"
+                  />
+                </svg>
+                we'll discuss it together.
+              </p>
+              <p className="py-1 font-light flex gap-2">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  className="w-6 h-6"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M4.5 12.75l6 6 9-13.5"
+                  />
+                </svg>
+                let's start the discussion.
+              </p>
+            </div>
+            <div className="bg-white p-20 text-neutral">
+              <h2 className="text-xl lg:text-3xl text-neutral font-bold text-center">
+                Mail
+              </h2>
+              <div className="mt-8">
+                <div className="flex flex-col gap-2">
+                  <label htmlFor="Name" className="font-medium">
+                    Name
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="Your Name"
+                    className="input input-bordered w-full bg-white"
+                  />
+                </div>
+                <div className="flex flex-col gap-2 mt-4">
+                  <label htmlFor="Email" className="font-medium">
+                    Email
+                  </label>
+                  <input
+                    type="email"
+                    placeholder="Your Email"
+                    className="input input-bordered w-full bg-white"
+                  />
+                </div>
+                <div className="flex flex-col gap-2 mt-4">
+                  <label htmlFor="Email" className="font-medium">
+                    Message
+                  </label>
+                  <textarea
+                    className="textarea bg-white textarea-bordered"
+                    placeholder="Your Message"
+                  ></textarea>
+                </div>
+              </div>
+              <div className="mt-8 text-center">
+                <button className="btn btn-wide btn-primary text-white gap-2">
+                  Send{" "}
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke="currentColor"
+                    className="w-6 h-6"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5"
+                    />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default FAQ;

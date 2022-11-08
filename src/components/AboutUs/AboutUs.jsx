@@ -5,7 +5,7 @@ function AboutUs() {
   return (
     <div className="mt-24 mb-24">
       <div className="container">
-        <h1 className="text-center text-neutral font-bold text-4xl lg:text-5xl mb-14">
+        <h1 className="text-center text-neutral font-bold text-4xl lg:text-5xl mb-14 font-mono">
           About Us
         </h1>
         <div className="grid md:grid-cols-2 gap-8">

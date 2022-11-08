@@ -1,16 +1,54 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import { AuthContext } from "../Contexts/AuthProvider";
 
 function Login() {
+  const { logIn, googleLogIn } = useContext(AuthContext);
+
   const [inputText, setInputText] = useState({
     email: "",
     pass: "",
   });
   const [btnState, setBtnState] = useState(false);
 
+  const navigate = useNavigate();
+  const location = useLocation();
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setBtnState(true);
+
+    logIn(inputText.email, inputText.pass)
+      .then((res) => {
+        setInputText({
+          email: "",
+          pass: "",
+        });
+        toast.success("You are loged in now!");
+        navigate("/");
+        setBtnState(false);
+      })
+      .catch((err) => {
+        setBtnState(false);
+        toast.error(err.message);
+      });
+  };
+
+  const handleGoogleLogIn = () => {
+    setBtnState(true);
+    googleLogIn()
+      .then((res) => {
+        setBtnState(false);
+        navigate("/");
+        toast.success("You are loged in now!.");
+      })
+      .catch((err) => {
+        setBtnState(false);
+
+        toast.error(err.message);
+      });
   };
 
   return (
@@ -68,6 +106,7 @@ function Login() {
           </form>
           <button
             disabled={btnState}
+            onClick={handleGoogleLogIn}
             className="mt-8 btn-block btn btn-outline btn-success text-success"
           >
             GOOGLE

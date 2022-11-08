@@ -29,6 +29,8 @@ module.exports = {
           "--rounded-btn": "0.3rem", // border radius rounded-btn utility class, used in buttons and similar element
           "--rounded-badge": "1.9rem", // border radius rounded-badge utility class, used in badges and similar
           "--animation-btn": "0.3s", // duration of animation when you click on button
+          "--min-height-btn": "2.6rem", // duration of animation when you click on button
+          "--height-btn": "2.6rem", // duration of animation when you click on button
           "--animation-input": "0.2s", // duration of animation for inputs like checkbox, toggle, radio, etc
           "--btn-text-case": "uppercase", // set default text transform for buttons
           "--btn-focus-scale": "0.95", // scale transform of button when you focus on it

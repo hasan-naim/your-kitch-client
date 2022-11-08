@@ -1,7 +1,12 @@
 import React from "react";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 import logo from "../../assets/logo/cookie.png";
+import { AuthContext } from "../../Contexts/AuthProvider";
 function Navbar() {
+  const { user, logOut } = useContext(AuthContext);
+
   const navItems = (
     <>
       <li>
@@ -12,6 +17,14 @@ function Navbar() {
       </li>
     </>
   );
+
+  const handleLogOut = () => {
+    logOut()
+      .then((res) => {
+        toast.success("You are successfully loged out!");
+      })
+      .catch((err) => toast.error(err.message));
+  };
 
   return (
     <div className="bg-white">
@@ -55,10 +68,40 @@ function Navbar() {
           <div className="navbar-center hidden lg:flex">
             <ul className="menu menu-horizontal p-0 space-x-2">{navItems}</ul>
           </div>
-          <div className="navbar-end">
-            <Link to={"/login"} className="btn btn-primary text-white">
-              Login
-            </Link>
+          <div className="navbar-end space-x-4">
+            {user ? (
+              <>
+                {user?.photoURL ? (
+                  <>
+                    <div className="avatar">
+                      <div className="w-8 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+                        <img src={user?.photoURL} />
+                      </div>
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <div className="avatar placeholder">
+                      <div className="bg-neutral-focus text-neutral-content rounded-full w-8">
+                        <span className="text-xs">
+                          {user?.displayName?.slice(0, 1)}
+                        </span>
+                      </div>
+                    </div>
+                  </>
+                )}
+                <button
+                  onClick={handleLogOut}
+                  className="btn btn-outline btn-secondary"
+                >
+                  Log Out
+                </button>
+              </>
+            ) : (
+              <Link to={"/login"} className="btn btn-primary text-white">
+                Login
+              </Link>
+            )}
           </div>
         </div>
       </div>

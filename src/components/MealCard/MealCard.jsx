@@ -1,26 +1,23 @@
 import React from "react";
 
-function MealCard() {
+function MealCard({ meal }) {
+  const { img, title, desc } = meal;
   return (
     <>
       <div class="max-w-sm bg-white rounded-lg border border-gray-300 shadow-md">
-        <a href="#">
+        <div className="w-full h-[284px] overflow-hidden rounded-t-lg">
           <img
             class="rounded-t-lg"
-            src="https://www.tasteofhome.com/wp-content/uploads/2018/01/exps21444_TH132767B05_02_1b_WEB-9.jpg?resize=696,696"
+            className="w-full h-full bg-cover bg-center object-cover"
+            src={img}
             alt=""
           />
-        </a>
+        </div>
         <div class="p-5 bg-white rounded-b-lg">
           <a href="#">
-            <h5 class="mb-2 text-2xl font-bold tracking-tigh">
-              Noteworthy technology acquisitions 2021
-            </h5>
+            <h5 class="mb-2 text-2xl font-bold tracking-tigh">{title}</h5>
           </a>
-          <p class="mb-3 font-normal text-gray-700">
-            Here are the biggest enterprise technology acquisitions of 2021 so
-            far, in reverse chronological order.
-          </p>
+          <p class="mb-3 font-normal text-gray-700">{desc}</p>
           <a href="#" class="btn btn-primary">
             Details
             <svg

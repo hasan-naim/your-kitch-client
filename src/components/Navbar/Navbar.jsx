@@ -56,7 +56,9 @@ function Navbar() {
             <ul className="menu menu-horizontal p-0 space-x-2">{navItems}</ul>
           </div>
           <div className="navbar-end">
-            <a className="btn btn-primary text-white">Login</a>
+            <Link to={"/login"} className="btn btn-primary text-white">
+              Login
+            </Link>
           </div>
         </div>
       </div>

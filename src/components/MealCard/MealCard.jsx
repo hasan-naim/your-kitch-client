@@ -1,25 +1,28 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
+import { PhotoView } from "react-photo-view";
 function MealCard({ meal }) {
-  const { img, title, desc, _id } = meal;
+  const { img, title, desc, _id, price } = meal;
   return (
     <>
       <div class="max-w-sm bg-white rounded-lg border border-gray-300 shadow-md">
         <div className="w-full h-[284px] overflow-hidden rounded-t-lg">
-          <img
-            class="rounded-t-lg"
-            className="w-full h-full bg-cover bg-center object-cover"
-            src={img}
-            alt=""
-          />
+          <PhotoView src={img}>
+            <img
+              class="rounded-t-lg"
+              className="w-full h-full bg-cover bg-center object-cover hover:scale-[1.2] duration-1000"
+              src={img}
+              alt=""
+            />
+          </PhotoView>
         </div>
         <div class="p-5 bg-white rounded-b-lg">
           <h5 class="mb-2 text-2xl font-bold tracking-tigh">{title}</h5>
 
-          <p class="mb-3 font-normal text-gray-700">
+          <p class="mb-2 font-normal text-gray-700">
             {desc.length > 100 ? `${desc.slice(0, 100)}...` : desc}
           </p>
+          <span className="block mb-2 text-xl font-bold">{`$${price}`}</span>
           <Link to={`/meals/${_id}`} class="btn btn-primary">
             Details
             <svg

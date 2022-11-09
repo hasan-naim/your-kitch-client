@@ -5,8 +5,8 @@ function Banner() {
   return (
     <div className="pt-8">
       <div className="container">
-        <div className="relative">
-          <div className="overlay">
+        <div className="relative min-h-[400px] min-w-full rounded-lg bg-slate-900/30">
+          <div className="overlay ">
             <img src={bannerImg} className="w-full rounded-lg" alt="" />
           </div>
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center font-mono">

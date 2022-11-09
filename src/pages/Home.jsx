@@ -6,7 +6,7 @@ import MealsSection from "../components/MealsSection/MealsSection";
 
 function Home() {
   useEffect(() => {
-    window.scrollTo(0, 0);
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
 
   return (

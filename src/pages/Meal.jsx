@@ -1,29 +1,30 @@
 import React, { useEffect, useState } from "react";
-import MealCard from "../components/MealCard/MealCard";
+import { useLoaderData } from "react-router-dom";
 import axios from "axios";
-function Meals() {
+import { PhotoView } from "react-photo-view";
+function Meal() {
   const [loading, setLoading] = useState(true);
-  const [meals, setMeals] = useState([]);
+  const [reviews, setReviews] = useState([]);
+  const [reviewLoading, setReviewLoading] = useState(true);
+  const {
+    meal: [{ title, img, _id, desc, price }],
+  } = useLoaderData();
+  useEffect(() => window.scrollTo({ top: 0, behavior: "smooth" }), []);
 
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-    axios.get("http://localhost:5000/meals?size=0").then((res) => {
-      const data = res?.data?.meals;
-      setMeals([...data]);
+    if (title) {
       setLoading(false);
-    });
-  }, []);
+    }
+    // axios.get()
+  }, [title]);
 
   return (
     <div>
       <div className="container">
-        <div className="mt-12">
-          <h1 className="text-center text-neutral font-bold text-4xl lg:text-5xl mb-14 font-mono">
-            Meals
-          </h1>
+        <div className="my-12">
           {loading ? (
             <>
-              <div className="flex items-center justify-center mb-12">
+              <div className="flex items-center justify-center">
                 <div role="status">
                   <svg
                     class="inline mr-2 w-10 h-10 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
@@ -46,10 +47,25 @@ function Meals() {
             </>
           ) : (
             <>
-              <div className="grid justify-center gap-8 md:grid-cols-2 lg:grid-cols-3 mb-12">
-                {meals.map((meal) => (
-                  <MealCard key={meal?._id} meal={meal} />
-                ))}
+              <h1 className="text-center text-neutral font-bold text-4xl lg:text-5xl mb-8 font-mono">
+                {title}
+              </h1>
+              <div className="w-full h-[400px] overflow-hidden rounded-lg">
+                <PhotoView src={img}>
+                  <img
+                    className="w-full h-full bg-cover bg-center object-cover hover:scale-[1.2] duration-1000"
+                    src={img}
+                    alt=""
+                  />
+                </PhotoView>
+              </div>
+              <div className="mt-8">
+                <h3 className="text-2xl font-medium mb-4">Description</h3>
+                <p className="mb-4">{desc}</p>
+                <p>
+                  <span className="font-bold">Price: </span>
+                  {`$${price}`}
+                </p>
               </div>
             </>
           )}
@@ -59,4 +75,4 @@ function Meals() {
   );
 }
 
-export default Meals;
+export default Meal;

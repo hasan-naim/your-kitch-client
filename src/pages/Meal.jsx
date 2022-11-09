@@ -2,13 +2,14 @@ import React, { useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import axios from "axios";
 import { PhotoView } from "react-photo-view";
+import ReviewSection from "../components/ReviewSection/ReviewSection";
 function Meal() {
   const [loading, setLoading] = useState(true);
-  const [reviews, setReviews] = useState([]);
-  const [reviewLoading, setReviewLoading] = useState(true);
+
   const {
-    meal: [{ title, img, _id, desc, price }],
+    meal: [meal],
   } = useLoaderData();
+  const { title, img, _id, desc, price } = meal;
   useEffect(() => window.scrollTo({ top: 0, behavior: "smooth" }), []);
 
   useEffect(() => {
@@ -47,26 +48,31 @@ function Meal() {
             </>
           ) : (
             <>
-              <h1 className="text-center text-neutral font-bold text-4xl lg:text-5xl mb-8 font-mono">
-                {title}
-              </h1>
-              <div className="w-full h-[400px] overflow-hidden rounded-lg">
-                <PhotoView src={img}>
-                  <img
-                    className="w-full h-full bg-cover bg-center object-cover hover:scale-[1.2] duration-1000"
-                    src={img}
-                    alt=""
-                  />
-                </PhotoView>
+              <div className="grid md:grid-cols-2 gap-6 justify-center items-center">
+                <div className="w-full h-[400px] overflow-hidden rounded-lg">
+                  <PhotoView src={img}>
+                    <img
+                      className="w-full h-full bg-cover bg-center object-cover hover:scale-[1.2] duration-1000"
+                      src={img}
+                      alt=""
+                    />
+                  </PhotoView>
+                </div>
+                <div className="justify-self-center justify-center">
+                  <h1 className=" text-neutral font-bold text-4xl lg:text-5xl mb-8 font-mono">
+                    {title}
+                  </h1>
+                  <div className="mt-8">
+                    <h3 className="text-2xl font-medium mb-4">Description</h3>
+                    <p className="mb-4">{desc}</p>
+                    <p>
+                      <span className="font-bold">Price: </span>
+                      {`$${price}`}
+                    </p>
+                  </div>
+                </div>
               </div>
-              <div className="mt-8">
-                <h3 className="text-2xl font-medium mb-4">Description</h3>
-                <p className="mb-4">{desc}</p>
-                <p>
-                  <span className="font-bold">Price: </span>
-                  {`$${price}`}
-                </p>
-              </div>
+              <ReviewSection mealId={_id} />
             </>
           )}
         </div>

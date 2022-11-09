@@ -1,7 +1,8 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function MealCard({ meal }) {
-  const { img, title, desc } = meal;
+  const { img, title, desc, _id } = meal;
   return (
     <>
       <div class="max-w-sm bg-white rounded-lg border border-gray-300 shadow-md">
@@ -14,11 +15,12 @@ function MealCard({ meal }) {
           />
         </div>
         <div class="p-5 bg-white rounded-b-lg">
-          <a href="#">
-            <h5 class="mb-2 text-2xl font-bold tracking-tigh">{title}</h5>
-          </a>
-          <p class="mb-3 font-normal text-gray-700">{desc}</p>
-          <a href="#" class="btn btn-primary">
+          <h5 class="mb-2 text-2xl font-bold tracking-tigh">{title}</h5>
+
+          <p class="mb-3 font-normal text-gray-700">
+            {desc.length > 100 ? `${desc.slice(0, 100)}...` : desc}
+          </p>
+          <Link to={`/meals/${_id}`} class="btn btn-primary">
             Details
             <svg
               aria-hidden="true"
@@ -33,7 +35,7 @@ function MealCard({ meal }) {
                 clip-rule="evenodd"
               ></path>
             </svg>
-          </a>
+          </Link>
         </div>
       </div>
     </>

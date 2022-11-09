@@ -1,46 +1,16 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import MealCard from "../MealCard/MealCard";
-import meal1 from "../../assets/meals/meal1.jpg";
-import meal2 from "../../assets/meals/meal2.jpg";
-import meal3 from "../../assets/meals/meal3.jpg";
-import meal4 from "../../assets/meals/meal4.jpg";
-import meal5 from "../../assets/meals/meal5.jpg";
-import meal6 from "../../assets/meals/meal6.jpg";
 import { Link } from "react-router-dom";
-const meals = [
-  {
-    title: "something",
-    desc: "some description will go here",
-    img: meal1,
-  },
-  {
-    title: "something",
-    desc: "some description will go here",
-    img: meal2,
-  },
-  {
-    title: "something",
-    desc: "some description will go here",
-    img: meal3,
-  },
-  {
-    title: "something",
-    desc: "some description will go here",
-    img: meal4,
-  },
-  {
-    title: "something",
-    desc: "some description will go here",
-    img: meal5,
-  },
-  {
-    title: "something",
-    desc: "some description will go here",
-    img: meal6,
-  },
-];
-
+import axios from "axios";
 function MealsSection() {
+  const [meals, setMeals] = useState([]);
+  useEffect(() => {
+    axios.get("http://localhost:5000/meals?size=0").then((res) => {
+      const data = res?.data?.meals;
+      setMeals([...data]);
+    });
+  }, []);
+
   return (
     <div className="my-20">
       <div className="container">

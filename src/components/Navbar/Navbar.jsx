@@ -15,6 +15,15 @@ function Navbar() {
       <li>
         <Link to={"/meals"}>Meals</Link>
       </li>
+      <li>
+        <Link to={"/myreviews"}>My Reviews</Link>
+      </li>
+      <li>
+        <Link to={"/addmeal"}>Add Meal</Link>
+      </li>
+      <li>
+        <Link to={"/blog"}>Blog</Link>
+      </li>
     </>
   );
 

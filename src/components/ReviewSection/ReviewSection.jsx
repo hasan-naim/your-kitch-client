@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useContext } from "react";
+import { toast } from "react-toastify";
 import { AuthContext } from "../../Contexts/AuthProvider";
 import Login from "../../pages/Login";
 import LoginForm from "../LoginForm/LoginForm";
@@ -14,12 +15,15 @@ function ReviewSection({ mealId }) {
   const [reviewLoading, setReviewLoading] = useState(true);
 
   useEffect(() => {
-    axios.get(`http://localhost:5000/reviewsById/${mealId}`).then((res) => {
-      if (res.data.status === 400) {
-        setReviews(res.data.reviews);
-      }
-    });
-  }, []);
+    axios
+      .get(`http://localhost:5000/reviewsById/${mealId}`)
+      .then((res) => {
+        if (res.data.status === 400) {
+          setReviews(res.data.reviews);
+        }
+      })
+      .catch((err) => toast.error(err.message));
+  }, [mealId]);
 
   const handleAdd = (data) => {
     setReviews([...reviews, data]);

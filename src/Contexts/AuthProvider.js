@@ -55,6 +55,7 @@ function AuthProvider({ children }) {
 
   const authInfo = {
     user,
+    loading,
     updateUsr,
     signUp,
     logOut,

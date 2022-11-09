@@ -1,10 +1,12 @@
 import { createBrowserRouter } from "react-router-dom";
 import Main from "../components/Layouts/Main";
+import PrivetRoute from "../components/PrivetRoute/PrivetRoute";
 import AddMeal from "../pages/AddMeal";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Meal from "../pages/Meal";
 import Meals from "../pages/Meals";
+import MyReviews from "../pages/MyReviews";
 import SignUp from "../pages/SignUp";
 
 const router = createBrowserRouter([
@@ -37,6 +39,14 @@ const router = createBrowserRouter([
       {
         path: "/addmeal",
         element: <AddMeal />,
+      },
+      {
+        path: "/myreviews",
+        element: (
+          <PrivetRoute>
+            <MyReviews />
+          </PrivetRoute>
+        ),
       },
     ],
   },

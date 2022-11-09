@@ -4,7 +4,7 @@ import LoginForm from "../components/LoginForm/LoginForm";
 
 function Login() {
   const location = useLocation();
-
+  const from = location.state?.from?.pathname || "/";
   return (
     <div className="my-12">
       <div className="container">
@@ -12,7 +12,7 @@ function Login() {
           <h1 className="text-center text-neutral font-bold text-4xl lg:text-5xl mb-8 font-mono">
             Login
           </h1>
-          <LoginForm where={["/"]} />
+          <LoginForm where={[from, { replace: true }]} />
         </div>
       </div>
     </div>

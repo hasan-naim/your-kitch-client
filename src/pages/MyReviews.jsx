@@ -62,7 +62,10 @@ function MyReviews() {
     e.preventDefault();
     console.log(editReview);
     axios
-      .patch(`http://localhost:5000/editedreview/${editReview._id}`, inputText)
+      .patch(
+        `https://your-kitch-ph-assignment-11-backend.vercel.app/editedreview/${editReview._id}`,
+        inputText
+      )
       .then((res) => {
         if (res.data.result.modifiedCount === 1) {
           const updatedReview = reviews.map((rv) => {

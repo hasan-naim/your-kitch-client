@@ -3,7 +3,7 @@ import React from "react";
 function ReviewCard({ review, handleDelete, handleEdit }) {
   const { details, email, name, img, rating, _id } = review;
   const ratingArr = Array.from({ length: rating });
-  console.log(review);
+  // console.log(review);
   return (
     <>
       {/* modal end */}

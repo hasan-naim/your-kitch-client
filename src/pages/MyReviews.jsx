@@ -1,14 +1,21 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { useContext } from "react";
 import { AuthContext } from "../Contexts/AuthProvider";
 import { toast } from "react-toastify";
 import ReviewCard from "../components/ReviewCard/ReviewCard";
+import app from "../firebase/firebase.config";
 function MyReviews() {
   const [reviews, setReviews] = useState([]);
   const [loading, setLoading] = useState(true);
   const { user } = useContext(AuthContext);
   const [editReview, setEditReview] = useState({});
+  const [inputText, setInputText] = useState({
+    details: "",
+    rating: 5,
+  });
+  const btnCross = useRef(null);
+
   useEffect(() => {
     axios
       .get(
@@ -25,10 +32,15 @@ function MyReviews() {
   const handleEdit = (id) => {
     axios
       .get(
-        `https://your-kitch-ph-assignment-11-backend.vercel.app/reviewsById/${id}`
+        `https://your-kitch-ph-assignment-11-backend.vercel.app/reviewtoedit/${id}`
       )
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data.reviews[0]);
+        setEditReview(res.data.review);
+        setInputText({
+          ...inputText,
+          details: res.data.review?.details,
+        });
       });
   };
 
@@ -46,6 +58,33 @@ function MyReviews() {
       });
   };
 
+  const handleEditSubmit = (e) => {
+    e.preventDefault();
+    console.log(editReview);
+    axios
+      .patch(`http://localhost:5000/editedreview/${editReview._id}`, inputText)
+      .then((res) => {
+        if (res.data.result.modifiedCount === 1) {
+          const updatedReview = reviews.map((rv) => {
+            if (rv._id === editReview._id) {
+              rv = {
+                ...rv,
+                details: inputText.details,
+                rating: inputText.rating,
+              };
+            }
+
+            return rv;
+          });
+
+          setReviews(updatedReview);
+          toast.success("Your review is updated.");
+          btnCross.current.click();
+        }
+      })
+      .catch((err) => console.log(err));
+  };
+
   return (
     <>
       <input type="checkbox" id="my-modal" className="modal-toggle" />
@@ -53,11 +92,92 @@ function MyReviews() {
         <div className="modal-box relative bg-white">
           <label
             htmlFor="my-modal"
+            ref={btnCross}
             className="btn btn-sm w-10 h-10 btn-circle absolute right-2 top-2"
           >
             ✕
           </label>
-          <h3 className="text-7xl">Hello</h3>
+          <h1 className="text-center text-neutral font-bold text-4xl lg:text-5xl font-mono">
+            Edit
+          </h1>
+
+          <form onSubmit={handleEditSubmit}>
+            <div className="flex flex-col gap-2 mt-4">
+              <label htmlFor="Email" className="font-medium">
+                Message
+              </label>
+              <textarea
+                value={inputText?.details}
+                onChange={(e) =>
+                  setInputText({ ...inputText, details: e.target.value })
+                }
+                className="textarea bg-white textarea-bordered"
+                placeholder="Your Message"
+                required
+              ></textarea>
+            </div>
+            <div className="flex flex-col gap-2 mt-4">
+              <label htmlFor="ratings" className="font-medium">
+                Rate
+              </label>
+              <div className="rating space-x-3">
+                <input
+                  value={1}
+                  onChange={(e) =>
+                    setInputText({ ...inputText, rating: e.target.value })
+                  }
+                  type="radio"
+                  name="rating-2"
+                  className="mask mask-star-2 bg-orange-400"
+                />
+                <input
+                  value={2}
+                  onChange={(e) =>
+                    setInputText({ ...inputText, rating: e.target.value })
+                  }
+                  type="radio"
+                  name="rating-2"
+                  className="mask mask-star-2 bg-orange-400"
+                />
+                <input
+                  value={3}
+                  onChange={(e) =>
+                    setInputText({ ...inputText, rating: e.target.value })
+                  }
+                  type="radio"
+                  name="rating-2"
+                  className="mask mask-star-2 bg-orange-400"
+                />
+                <input
+                  value={4}
+                  onChange={(e) =>
+                    setInputText({ ...inputText, rating: e.target.value })
+                  }
+                  type="radio"
+                  name="rating-2"
+                  className="mask mask-star-2 bg-orange-400"
+                />
+                <input
+                  value={5}
+                  onChange={(e) =>
+                    setInputText({ ...inputText, rating: e.target.value })
+                  }
+                  type="radio"
+                  name="rating-2"
+                  className="mask mask-star-2 bg-orange-400"
+                />
+              </div>
+            </div>
+
+            <div className="mt-6 text-center">
+              <button
+                type="submit"
+                className="btn sm:btn-wide w-20 btn-primary text-white gap-2"
+              >
+                Add
+              </button>
+            </div>
+          </form>
         </div>
       </div>
 

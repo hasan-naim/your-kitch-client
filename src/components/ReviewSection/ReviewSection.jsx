@@ -46,7 +46,7 @@ function ReviewSection({ mealId }) {
           Reviews
         </h1>
         {/* showing reviews */}
-        {reviews.length > 0 ? (
+        {reviews?.length > 0 ? (
           <div className="mb-12 grid lg:grid-cols-2 gap-2">
             {reviews.map((review) => (
               <MealReview key={review._id} review={review} />

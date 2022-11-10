@@ -1,8 +1,9 @@
 import React from "react";
 
-function ReviewCard({ review, handleDelete }) {
+function ReviewCard({ review, handleDelete, handleEdit }) {
   const { details, email, name, img, rating, _id } = review;
   const ratingArr = Array.from({ length: rating });
+  console.log(review);
   return (
     <>
       {/* modal end */}
@@ -53,7 +54,7 @@ function ReviewCard({ review, handleDelete }) {
             </div>
           </div>
           <div className="ml-auto space-x-3">
-            <button>
+            <button onClick={() => handleEdit(_id)}>
               <label htmlFor="my-modal">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

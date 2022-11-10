@@ -8,6 +8,7 @@ function MyReviews() {
   const [reviews, setReviews] = useState([]);
   const [loading, setLoading] = useState(true);
   const { user } = useContext(AuthContext);
+  const [editReview, setEditReview] = useState({});
   useEffect(() => {
     axios
       .get(
@@ -19,6 +20,17 @@ function MyReviews() {
       })
       .catch((err) => toast.error(err.message));
   }, [user]);
+
+  /// handle edit function
+  const handleEdit = (id) => {
+    axios
+      .get(
+        `https://your-kitch-ph-assignment-11-backend.vercel.app/reviewsById/${id}`
+      )
+      .then((res) => {
+        console.log(res.data);
+      });
+  };
 
   const handleDelete = (id) => {
     axios
@@ -86,6 +98,7 @@ function MyReviews() {
                     <ReviewCard
                       key={review._id}
                       handleDelete={handleDelete}
+                      handleEdit={handleEdit}
                       review={review}
                     />
                   ))}

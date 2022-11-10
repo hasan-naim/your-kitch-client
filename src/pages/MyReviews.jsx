@@ -15,7 +15,9 @@ function MyReviews() {
     rating: 5,
   });
   const btnCross = useRef(null);
-
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
   useEffect(() => {
     axios
       .get(
@@ -50,12 +52,13 @@ function MyReviews() {
         `https://your-kitch-ph-assignment-11-backend.vercel.app/reviewsByEmail?id=${id}`
       )
       .then((res) => {
-        console.log("delete");
         if (res.data.result.deletedCount) {
           const newReviews = reviews.filter((review) => review._id !== id);
           setReviews(newReviews);
+          toast.success("Deleted your review");
         }
-      });
+      })
+      .catch((err) => toast.error(err.message));
   };
 
   const handleEditSubmit = (e) => {

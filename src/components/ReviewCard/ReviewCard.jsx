@@ -53,7 +53,7 @@ function ReviewCard({ review, handleDelete, handleEdit }) {
               ))}
             </div>
           </div>
-          <div className="ml-auto space-x-3">
+          <div className="ml-auto flex flex-col sm:flex-row gap-3">
             <button onClick={() => handleEdit(_id)}>
               <label htmlFor="my-modal">
                 <svg

@@ -4,8 +4,6 @@ import { useContext } from "react";
 import { AuthContext } from "../Contexts/AuthProvider";
 import { toast } from "react-toastify";
 import ReviewCard from "../components/ReviewCard/ReviewCard";
-import app from "../firebase/firebase.config";
-import { useNavigate } from "react-router-dom";
 function MyReviews() {
   const [reviews, setReviews] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -208,7 +206,7 @@ function MyReviews() {
                 <div className="flex items-center justify-center mb-12">
                   <div role="status">
                     <svg
-                      class="inline mr-2 w-10 h-10 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
+                      className="inline mr-2 w-10 h-10 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
                       viewBox="0 0 100 101"
                       fill="none"
                       xmlns="http://www.w3.org/2000/svg"
@@ -222,13 +220,13 @@ function MyReviews() {
                         fill="currentFill"
                       />
                     </svg>
-                    <span class="sr-only">Loading...</span>
+                    <span className="sr-only">Loading...</span>
                   </div>
                 </div>
               </>
             ) : (
               <>
-                {reviews?.length == 0 ? (
+                {reviews?.length === 0 ? (
                   <>
                     <h3 className="text-center mb-12 font-bold text-gray-400 text-3xl">
                       You didn't review at anything.

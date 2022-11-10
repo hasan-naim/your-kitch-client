@@ -1,21 +1,39 @@
 import React, { useState } from "react";
-import { useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 import { toast } from "react-toastify";
-import { AuthContext } from "../Contexts/AuthProvider";
 
 function AddMeal() {
   const [inputText, setInputText] = useState({
-    email: "",
-    name: "",
+    desc: "",
+    title: "",
     img: "",
-    pass: "",
+    price: "",
   });
   const [btnState, setBtnState] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setBtnState(true);
+    console.log(inputText);
+
+    axios
+      .post("https://your-kitch-ph-assignment-11-backend.vercel.app/addmeal", {
+        ...inputText,
+      })
+      .then((res) => {
+        if (res.data.result.insertedId) {
+          setBtnState(false);
+          toast.success("Your meal is successfully added!");
+          setInputText({
+            ...inputText,
+            desc: "",
+            title: "",
+            img: "",
+            price: "",
+          });
+        }
+      })
+      .catch((err) => toast.error(err.message));
   };
 
   return (
@@ -31,9 +49,9 @@ function AddMeal() {
                 Title
               </label>
               <input
-                value={inputText.name}
+                value={inputText.title}
                 onChange={(e) =>
-                  setInputText({ ...inputText, name: e.target.value })
+                  setInputText({ ...inputText, title: e.target.value })
                 }
                 type="text"
                 required
@@ -43,7 +61,7 @@ function AddMeal() {
             </div>
             <div className="flex flex-col gap-2 mt-4">
               <label htmlFor="Email" className="font-medium">
-                Profile Picture
+                Picture URL
               </label>
               <input
                 value={inputText.img}
@@ -56,39 +74,32 @@ function AddMeal() {
               />
             </div>
             <div className="flex flex-col gap-2 mt-4">
-              <label htmlFor="Email" className="font-medium">
-                Email
+              <label htmlFor="password" className="font-medium">
+                Price
               </label>
               <input
-                value={inputText.email}
+                value={inputText.price}
                 onChange={(e) =>
-                  setInputText({ ...inputText, email: e.target.value })
+                  setInputText({ ...inputText, price: e.target.value })
                 }
-                type="email"
-                placeholder="Your Email"
+                type="number"
+                placeholder="Price"
                 className="input input-bordered w-full bg-white"
               />
             </div>
             <div className="flex flex-col gap-2 mt-4">
-              <label htmlFor="password" className="font-medium">
-                Password
+              <label htmlFor="Email" className="font-medium">
+                Description
               </label>
-              <input
-                value={inputText.pass}
+              <textarea
+                value={inputText.desc}
                 onChange={(e) =>
-                  setInputText({ ...inputText, pass: e.target.value })
+                  setInputText({ ...inputText, desc: e.target.value })
                 }
-                type="password"
-                placeholder="Your Password"
-                className="input input-bordered w-full bg-white"
-              />
-            </div>
-            <div className="mt-2 text-sm">
-              Already Have an account?{" "}
-              <Link to={"/login"} className="text-primary hover:underline">
-                {" "}
-                Login.{" "}
-              </Link>
+                className="textarea bg-white textarea-bordered"
+                placeholder="Your Message"
+                required
+              ></textarea>
             </div>
             <div className="mt-6">
               <button
@@ -96,7 +107,7 @@ function AddMeal() {
                 className="btn btn-primary btn-block"
                 type="submit"
               >
-                Sign Up
+                Add Meal
               </button>
             </div>
           </form>

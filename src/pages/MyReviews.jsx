@@ -5,6 +5,7 @@ import { AuthContext } from "../Contexts/AuthProvider";
 import { toast } from "react-toastify";
 import ReviewCard from "../components/ReviewCard/ReviewCard";
 import app from "../firebase/firebase.config";
+import { useNavigate } from "react-router-dom";
 function MyReviews() {
   const [reviews, setReviews] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -15,19 +16,27 @@ function MyReviews() {
     rating: 5,
   });
   const btnCross = useRef(null);
+
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
   useEffect(() => {
     axios
       .get(
-        `https://your-kitch-ph-assignment-11-backend.vercel.app/reviewsByEmail?email=${user?.email}`
+        `https://your-kitch-ph-assignment-11-backend.vercel.app/reviewsByEmail?email=${user?.email}`,
+        {
+          headers: {
+            authorization: `Bearer ${localStorage.getItem("yourKitchtoken")}`,
+          },
+        }
       )
       .then((res) => {
         setReviews(res.data.reviews);
         setLoading(false);
       })
-      .catch((err) => toast.error(err.message));
+      .catch((err) => {
+        toast.error(`${err.message} please login again`);
+      });
   }, [user]);
 
   /// handle edit function
@@ -180,7 +189,7 @@ function MyReviews() {
                 type="submit"
                 className="btn sm:btn-wide w-20 btn-primary text-white gap-2"
               >
-                Add
+                Edit
               </button>
             </div>
           </form>
@@ -219,16 +228,26 @@ function MyReviews() {
               </>
             ) : (
               <>
-                <div className="grid md:grid-cols-2 gap-2 mb-12">
-                  {reviews.map((review) => (
-                    <ReviewCard
-                      key={review._id}
-                      handleDelete={handleDelete}
-                      handleEdit={handleEdit}
-                      review={review}
-                    />
-                  ))}
-                </div>
+                {reviews?.length == 0 ? (
+                  <>
+                    <h3 className="text-center mb-12 font-bold text-gray-400 text-3xl">
+                      You didn't review at anything.
+                    </h3>
+                  </>
+                ) : (
+                  <>
+                    <div className="grid md:grid-cols-2 gap-2 mb-12">
+                      {reviews.map((review) => (
+                        <ReviewCard
+                          key={review._id}
+                          handleDelete={handleDelete}
+                          handleEdit={handleEdit}
+                          review={review}
+                        />
+                      ))}
+                    </div>
+                  </>
+                )}
               </>
             )}
           </div>

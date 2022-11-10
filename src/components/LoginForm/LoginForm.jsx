@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { AuthContext } from "../../Contexts/AuthProvider";
-
+import axios from "axios";
 function LoginForm({ where }) {
   const { logIn, googleLogIn } = useContext(AuthContext);
 
@@ -14,12 +14,30 @@ function LoginForm({ where }) {
 
   const navigate = useNavigate();
 
+  const getJwtToken = (user) => {
+    axios
+      .post("https://your-kitch-ph-assignment-11-backend.vercel.app/jwt", {
+        email: user.email,
+      })
+      .then((res) => {
+        if (res.data.status === 200) {
+          localStorage.setItem("yourKitchtoken", res.data.token);
+        }
+      })
+      .catch((err) => {
+        toast.error(`${err.message} Login Again`);
+      });
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setBtnState(true);
 
     logIn(inputText.email, inputText.pass)
       .then((res) => {
+        const user = res.user;
+        /// jwt token
+        getJwtToken(user);
         setInputText({
           email: "",
           pass: "",
@@ -38,6 +56,9 @@ function LoginForm({ where }) {
     setBtnState(true);
     googleLogIn()
       .then((res) => {
+        const user = res.user;
+        ///jwt
+        getJwtToken(user);
         setBtnState(false);
         navigate(...where);
         toast.success("You are loged in now!.");

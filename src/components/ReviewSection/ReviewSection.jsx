@@ -18,7 +18,7 @@ function ReviewSection({ mealId }) {
         `https://your-kitch-ph-assignment-11-backend.vercel.app/reviewsById/${mealId}`
       )
       .then((res) => {
-        if (res.data.status === 400) {
+        if (res.data.status === 200) {
           setReviews(res.data.reviews);
         }
       })

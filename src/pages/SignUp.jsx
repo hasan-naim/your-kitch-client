@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useState } from "react";
 import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
@@ -15,6 +16,21 @@ function Login() {
   const [btnState, setBtnState] = useState(false);
   const navigate = useNavigate();
 
+  const getJwtToken = (user) => {
+    axios
+      .post("https://your-kitch-ph-assignment-11-backend.vercel.app/jwt", {
+        email: user.email,
+      })
+      .then((res) => {
+        if (res.data.status === 200) {
+          localStorage.setItem("yourKitchtoken", res.data.token);
+        }
+      })
+      .catch((err) => {
+        toast.error(`${err.message} Login Again`);
+      });
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setBtnState(true);
@@ -22,6 +38,9 @@ function Login() {
     signUp(inputText.email, inputText.pass)
       .then((result) => {
         const usr = result.user;
+        /// get jwt token
+        getJwtToken(usr);
+
         /// update the user
         updateUsr({
           displayName: inputText.name,
@@ -34,48 +53,18 @@ function Login() {
               img: "",
               pass: "",
             });
-            toast.success("Your Account Is created Successfully!", {
-              position: "top-center",
-              autoClose: 5000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-              theme: "light",
-            });
+            toast.success("Your Account Is created Successfully!");
             navigate("/");
             setBtnState(false);
-            console.log(usr);
           })
           .catch((err) => {
             setBtnState(false);
-            toast.error(err.message, {
-              position: "top-center",
-              autoClose: 5000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-              theme: "light",
-            });
-            console.log("inside", err);
+            toast.error(err.message);
           });
       })
       .catch((err) => {
         setBtnState(false);
-        toast.error(err.message, {
-          position: "top-center",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-        });
-        console.log(err);
+        toast.error(err.message);
       });
   };
 

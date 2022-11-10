@@ -3,7 +3,7 @@ import React from "react";
 function Blog() {
   return (
     <div className="my-12 pt-12">
-      <div className="container space-y-12">
+      <div className="container space-y-12 px-2">
         {/* first */}
         <div>
           <h1 className="text-2xl text-slate-700 font-bold">

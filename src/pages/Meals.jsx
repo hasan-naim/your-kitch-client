@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import MealCard from "../components/MealCard/MealCard";
 import axios from "axios";
+import { Helmet } from "react-helmet";
 function Meals() {
   const [loading, setLoading] = useState(true);
   const [meals, setMeals] = useState([]);
@@ -20,6 +21,10 @@ function Meals() {
 
   return (
     <div className="pt-12">
+      <Helmet>
+        <title>Meals | Your kitch</title>
+      </Helmet>
+
       <div className="container">
         <div className="mt-12">
           <h1 className="text-center text-neutral font-bold text-4xl lg:text-5xl mb-14 font-mono">

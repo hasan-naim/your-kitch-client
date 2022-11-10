@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { Helmet } from "react-helmet";
 
 function AddMeal() {
   const [inputText, setInputText] = useState({
@@ -38,6 +39,9 @@ function AddMeal() {
 
   return (
     <div className="my-12 pt-12">
+      <Helmet>
+        <title>Add Meal | Your kitch</title>
+      </Helmet>
       <div className="container">
         <div className="w-full max-w-lg bg-white rounded-lg mx-auto p-12">
           <h1 className="text-center text-neutral font-bold text-4xl lg:text-5xl mb-8 font-mono">

@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useContext } from "react";
+import { Helmet } from "react-helmet";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { AuthContext } from "../Contexts/AuthProvider";
@@ -70,6 +71,9 @@ function Login() {
 
   return (
     <div className="my-12 pt-12">
+      <Helmet>
+        <title>Sign Up | Your kitch</title>
+      </Helmet>
       <div className="container">
         <div className="w-full max-w-lg bg-white rounded-lg mx-auto p-12">
           <h1 className="text-center text-neutral font-bold text-4xl lg:text-5xl mb-8 font-mono">

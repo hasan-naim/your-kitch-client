@@ -1,8 +1,12 @@
 import React from "react";
+import { Helmet } from "react-helmet";
 
 function Blog() {
   return (
     <div className="my-12 pt-12">
+      <Helmet>
+        <title>Blog | Your kitch</title>
+      </Helmet>
       <div className="container space-y-12 px-2">
         {/* first */}
         <div>

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import { PhotoView } from "react-photo-view";
 import ReviewSection from "../components/ReviewSection/ReviewSection";
+import { Helmet } from "react-helmet";
 function Meal() {
   const [loading, setLoading] = useState(true);
 
@@ -20,6 +21,9 @@ function Meal() {
 
   return (
     <div className="pt-12">
+      <Helmet>
+        <title>{title} | Your kitch</title>
+      </Helmet>
       <div className="container">
         <div className="my-12">
           {loading ? (

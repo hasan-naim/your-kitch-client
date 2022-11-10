@@ -3,7 +3,7 @@ import AboutUs from "../components/AboutUs/AboutUs";
 import Banner from "../components/Banner/Banner";
 import ContactUs from "../components/ContactUs/ContactUs";
 import MealsSection from "../components/MealsSection/MealsSection";
-
+import { Helmet } from "react-helmet";
 function Home() {
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -11,6 +11,9 @@ function Home() {
 
   return (
     <div className="pt-12">
+      <Helmet>
+        <title>Home | Your kitch</title>
+      </Helmet>
       <Banner />
       <MealsSection />
       <AboutUs />

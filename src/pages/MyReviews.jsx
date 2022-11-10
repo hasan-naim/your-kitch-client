@@ -4,6 +4,7 @@ import { useContext } from "react";
 import { AuthContext } from "../Contexts/AuthProvider";
 import { toast } from "react-toastify";
 import ReviewCard from "../components/ReviewCard/ReviewCard";
+import { Helmet } from "react-helmet";
 function MyReviews() {
   const [reviews, setReviews] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -100,6 +101,9 @@ function MyReviews() {
 
   return (
     <>
+      <Helmet>
+        <title>My Reviews | Your kitch</title>
+      </Helmet>
       <input type="checkbox" id="my-modal" className="modal-toggle" />
       <div className="modal">
         <div className="modal-box relative bg-white">

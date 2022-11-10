@@ -10,7 +10,7 @@ function Home() {
   }, []);
 
   return (
-    <div>
+    <div className="pt-12">
       <Banner />
       <MealsSection />
       <AboutUs />

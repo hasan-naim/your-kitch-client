@@ -1,8 +1,11 @@
 import axios from "axios";
 import React, { useState } from "react";
+import { useContext } from "react";
 import { toast } from "react-toastify";
+import { AuthContext } from "../../Contexts/AuthProvider";
 
-function ReviewForm({ user, mealId, handleAdd }) {
+function ReviewForm({ mealId, handleAdd }) {
+  const { user } = useContext(AuthContext);
   const [inputText, setInputText] = useState({
     details: "",
     rating: 5,
@@ -17,10 +20,13 @@ function ReviewForm({ user, mealId, handleAdd }) {
       rating: inputText.rating,
       email: user?.email,
       name: user?.displayName,
-      img: user?.photoURL,
+      img: user.photoURL,
     };
     axios
-      .post("http://localhost:5000/review/post", data)
+      .post(
+        "https://your-kitch-ph-assignment-11-backend.vercel.app/review/post",
+        data
+      )
       .then((res) => {
         if (res.data.insertedId) {
           handleAdd(data);
@@ -106,7 +112,7 @@ function ReviewForm({ user, mealId, handleAdd }) {
         <div className="mt-6 text-center">
           <button
             type="submit"
-            className="btn btn-wide btn-primary text-white gap-2"
+            className="btn sm:btn-wide w-20 btn-primary text-white gap-2"
           >
             Add
           </button>

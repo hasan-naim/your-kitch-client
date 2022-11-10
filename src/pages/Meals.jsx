@@ -7,15 +7,19 @@ function Meals() {
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
-    axios.get("http://localhost:5000/meals?size=0").then((res) => {
-      const data = res?.data?.meals;
-      setMeals([...data]);
-      setLoading(false);
-    });
+    axios
+      .get(
+        "https://your-kitch-ph-assignment-11-backend.vercel.app/meals?size=0"
+      )
+      .then((res) => {
+        const data = res?.data?.meals;
+        setMeals([...data]);
+        setLoading(false);
+      });
   }, []);
 
   return (
-    <div>
+    <div className="pt-12">
       <div className="container">
         <div className="mt-12">
           <h1 className="text-center text-neutral font-bold text-4xl lg:text-5xl mb-14 font-mono">

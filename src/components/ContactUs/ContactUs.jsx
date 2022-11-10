@@ -4,17 +4,17 @@ function FAQ() {
   return (
     <div>
       <div className="py-12">
-        <div className="container">
+        <div className="container overflow-hidden">
           <h1 className="text-center text-neutral font-bold text-4xl lg:text-5xl mb-14 font-mono">
             Contact Us
           </h1>
-          <div className="grid lg:grid-cols-2 text-white">
-            <div className="gradientBg p-20">
-              <h1 className="text-3xl lg:text-5xl font-extrabold text-white">
+          <div className="grid lg:grid-cols-2 text-white max-w-full">
+            <div className="gradientBg p-4 w-full max-w-full sm:p-8 lg:p-20">
+              <h1 className="text-xl lg:text-5xl font-extrabold text-white">
                 100%<br></br> Satisfaction <br />
                 Guaranteed
               </h1>
-              <p className="mt-4 font-light">
+              <p className="mt-4 text-sm break-words font-light max-w-full">
                 Now you can run your entire restaurant from one tablet.
                 Seamlessly sync all your orders in one place, manage multiple
                 brands, and get valuable insights and metrics on your business.
@@ -74,11 +74,11 @@ function FAQ() {
                 let's start the discussion.
               </p>
             </div>
-            <div className="bg-white p-20 text-neutral">
+            <div className="bg-white p-4 max-w-full sm:p-8 lg:p-20 text-neutral">
               <h2 className="text-xl lg:text-3xl text-neutral font-bold text-center">
                 Mail
               </h2>
-              <div className="mt-8">
+              <div className="mt-8 max-w-52 w-48 sm:w-full sm:max-w-full mx-auto">
                 <div className="flex flex-col gap-2">
                   <label htmlFor="Name" className="font-medium">
                     Name
@@ -86,7 +86,7 @@ function FAQ() {
                   <input
                     type="text"
                     placeholder="Your Name"
-                    className="input input-bordered w-full bg-white"
+                    className="input input-bordered bg-white"
                   />
                 </div>
                 <div className="flex flex-col gap-2 mt-4">
@@ -109,8 +109,8 @@ function FAQ() {
                   ></textarea>
                 </div>
               </div>
-              <div className="mt-8 text-center">
-                <button className="btn btn-wide btn-primary text-white gap-2">
+              <div className="mt-8 text-center w-48 sm:w-full mx-auto">
+                <button className="btn sm:btn-wide btn-primary w-48  text-white gap-2">
                   Send{" "}
                   <svg
                     xmlns="http://www.w3.org/2000/svg"

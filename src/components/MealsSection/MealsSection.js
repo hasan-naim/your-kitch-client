@@ -7,11 +7,15 @@ function MealsSection() {
   const [meals, setMeals] = useState([]);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
-    axios.get("http://localhost:5000/meals?size=3").then((res) => {
-      const data = res?.data?.meals;
-      setMeals([...data]);
-      setLoading(false);
-    });
+    axios
+      .get(
+        "https://your-kitch-ph-assignment-11-backend.vercel.app/meals?size=3"
+      )
+      .then((res) => {
+        const data = res?.data?.meals;
+        setMeals([...data]);
+        setLoading(false);
+      });
   }, []);
 
   return (

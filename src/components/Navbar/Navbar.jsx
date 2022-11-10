@@ -36,16 +36,16 @@ function Navbar() {
   };
 
   return (
-    <div className="bg-white">
+    <div className="bg-white fixed top-0 left-0 w-full z-10 shadow-md">
       <div className="container">
-        <div className="navbar ">
+        <div className="navbar p-0">
           <div className="navbar-start">
             <div className="dropdown">
               <label tabIndex={0} className="btn btn-ghost lg:hidden">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5"
-                  fill="none"
+                  className="h-5 text-neutral w-5"
+                  fill="#000"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
                 >
@@ -68,8 +68,8 @@ function Navbar() {
               to={"/"}
               className="translate-y-0 flex items-center duration-300 h-full hover:bg-white hover:-translate-y-2 hover:cursor-pointer normal-case text-xl"
             >
-              <img className="w-10 mr-2 md:mr-2" src={logo} alt="" />
-              <h1 className="text-xl cursor-pointer font-bold md:text-3xl lg:text-3xl font-mono">
+              <img className="w-6 sm:w-10 mr-2 md:mr-2" src={logo} alt="" />
+              <h1 className="text-sm sm:text-xl cursor-pointer font-bold md:text-3xl lg:text-3xl font-mono">
                 Your Kitch
               </h1>
             </Link>
@@ -84,24 +84,38 @@ function Navbar() {
                   <>
                     <div className="avatar">
                       <div className="w-8 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-                        <img src={user?.photoURL} />
+                        <img src={user.photoURL} alt="profile" />
                       </div>
                     </div>
                   </>
                 ) : (
                   <>
-                    <div className="avatar placeholder">
-                      <div className="bg-neutral-focus text-neutral-content rounded-full w-8">
-                        <span className="text-xs">
-                          {user?.displayName?.slice(0, 1)}
-                        </span>
-                      </div>
-                    </div>
+                    {user?.displayName ? (
+                      <>
+                        <div className="avatar placeholder">
+                          <div className="bg-neutral-focus text-neutral-content rounded-full w-8">
+                            <span className="text-xs uppercase">
+                              {user?.displayName.slice(0, 1)}
+                            </span>
+                          </div>
+                        </div>{" "}
+                      </>
+                    ) : (
+                      <>
+                        <div className="avatar placeholder">
+                          <div className="bg-neutral-focus text-neutral-content rounded-full w-8">
+                            <span className="text-xs uppercase">
+                              {user?.email?.slice(0, 1)}
+                            </span>
+                          </div>
+                        </div>{" "}
+                      </>
+                    )}
                   </>
                 )}
                 <button
                   onClick={handleLogOut}
-                  className="btn btn-outline btn-secondary"
+                  className="btn btn-outline btn-secondary p-1 sm:px-4"
                 >
                   Log Out
                 </button>

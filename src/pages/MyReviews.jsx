@@ -10,9 +10,10 @@ function MyReviews() {
   const { user } = useContext(AuthContext);
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/reviewsByEmail?email=${user?.email}`)
+      .get(
+        `https://your-kitch-ph-assignment-11-backend.vercel.app/reviewsByEmail?email=${user?.email}`
+      )
       .then((res) => {
-        console.log(res.data);
         setReviews(res.data.reviews);
         setLoading(false);
       })
@@ -21,7 +22,9 @@ function MyReviews() {
 
   const handleDelete = (id) => {
     axios
-      .delete(`http://localhost:5000/reviewsByEmail?id=${id}`)
+      .delete(
+        `https://your-kitch-ph-assignment-11-backend.vercel.app/reviewsByEmail?id=${id}`
+      )
       .then((res) => {
         console.log("delete");
         if (res.data.result.deletedCount) {
@@ -47,7 +50,7 @@ function MyReviews() {
       </div>
 
       {/* modal end */}
-      <div>
+      <div className="pt-12">
         <div className="container">
           <div className="mt-12">
             <h1 className="text-center text-neutral font-bold text-4xl lg:text-5xl mb-14 font-mono">

@@ -9,14 +9,14 @@ import MealReview from "../MealReview/MealReview";
 import ReviewForm from "../ReviewForm/ReviewForm";
 
 function ReviewSection({ mealId }) {
-  const [usr, setUsr] = useState({});
   const { user } = useContext(AuthContext);
   const [reviews, setReviews] = useState([]);
   const [reviewLoading, setReviewLoading] = useState(true);
-
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/reviewsById/${mealId}`)
+      .get(
+        `https://your-kitch-ph-assignment-11-backend.vercel.app/reviewsById/${mealId}`
+      )
       .then((res) => {
         if (res.data.status === 400) {
           setReviews(res.data.reviews);
@@ -26,12 +26,9 @@ function ReviewSection({ mealId }) {
   }, [mealId]);
 
   const handleAdd = (data) => {
-    setReviews([...reviews, data]);
+    setReviews([data, ...reviews]);
+    toast.success("Your review is added successfully!");
   };
-
-  useEffect(() => {
-    setUsr(user);
-  }, [user]);
 
   return (
     <div>
@@ -66,7 +63,7 @@ function ReviewSection({ mealId }) {
         {/* form */}
         <div className="bg-white max-w-xl mx-auto p-10 rounded-lg">
           <h3 className="text-2xl text-center font-medium  mb-6">Add Review</h3>
-          {usr ? (
+          {user ? (
             <>
               <ReviewForm user={user} mealId={mealId} handleAdd={handleAdd} />
             </>

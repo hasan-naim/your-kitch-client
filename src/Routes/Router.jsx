@@ -34,7 +34,9 @@ const router = createBrowserRouter([
         path: "/meals/:id",
         element: <Meal />,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/meals/${params.id}`),
+          fetch(
+            `https://your-kitch-ph-assignment-11-backend.vercel.app/meals/${params.id}`
+          ),
       },
       {
         path: "/addmeal",

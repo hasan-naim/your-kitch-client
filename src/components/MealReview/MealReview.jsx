@@ -1,21 +1,27 @@
 import React from "react";
 
 function MealReview({ review }) {
-  const { details, name, img, rating } = review;
+  const { details, name, img, rating, email } = review;
   const ratingArr = Array.from({ length: rating });
-  console.log(review);
   return (
     <div>
       <div className="bg-white max-w-xl h-full rounded-md px-10 py-8 mx-auto flex gap-4">
         <div className="avatar placeholder items-center">
           <div className="bg-neutral-focus text-neutral-content rounded-full w-14">
-            {img ? (
-              <img
-                src="https://lh3.googleusercontent.com/drive-viewer/AJc5JmQUvjidJipIKGcFo39NUm4Xsk1zYXgoT-00TRUQPFzEnLQ6Y39S4FoeWsAfidGqOO0cwn0nNW7TU4Vw0qROkpAtJ91T=w1366-h667"
-                alt=""
-              />
+            {img?.length > 6 ? (
+              <img src={img} alt="" />
             ) : (
-              <span className="text-xl font-medium">{name?.slice(0, 1)}</span>
+              <>
+                {name ? (
+                  <span className="text-xl font-medium">
+                    {name?.slice(0, 1)}
+                  </span>
+                ) : (
+                  <span className="text-xl font-medium uppercase">
+                    {email?.slice(0, 1)}
+                  </span>
+                )}
+              </>
             )}
           </div>
         </div>

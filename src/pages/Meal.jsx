@@ -20,7 +20,7 @@ function Meal() {
   }, [title]);
 
   return (
-    <div>
+    <div className="pt-12">
       <div className="container">
         <div className="my-12">
           {loading ? (

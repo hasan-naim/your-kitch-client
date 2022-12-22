@@ -1,7 +1,7 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useContext } from "react";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { AuthContext } from "../Contexts/AuthProvider";
@@ -16,6 +16,10 @@ function Login() {
   });
   const [btnState, setBtnState] = useState(false);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
 
   const getJwtToken = (user) => {
     axios
@@ -76,7 +80,7 @@ function Login() {
       </Helmet>
       <div className="container">
         <div className="w-full max-w-lg bg-white rounded-lg mx-auto p-12">
-          <h1 className="text-center text-neutral font-bold text-4xl lg:text-5xl mb-8 font-mono">
+          <h1 className="text-center text-neutral font-bold text-4xl lg:text-5xl mb-8 font-sans">
             Sign Up
           </h1>
           <form onSubmit={handleSubmit}>

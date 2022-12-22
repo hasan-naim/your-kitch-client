@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import { PhotoView } from "react-photo-view";
 import ReviewSection from "../components/ReviewSection/ReviewSection";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 function Meal() {
   const [loading, setLoading] = useState(true);
 
@@ -62,7 +62,7 @@ function Meal() {
                   </PhotoView>
                 </div>
                 <div className="justify-self-center justify-center">
-                  <h1 className=" text-neutral font-bold text-4xl lg:text-5xl mb-8 font-mono">
+                  <h1 className=" text-neutral font-bold text-4xl lg:text-5xl mb-8 font-sans">
                     {title}
                   </h1>
                   <div className="mt-8">

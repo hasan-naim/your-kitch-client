@@ -35,14 +35,14 @@ function ReviewSection({ mealId }) {
       <input type="checkbox" id="my-modal-4" className="modal-toggle" />
       <label htmlFor="my-modal-4" className="modal cursor-pointer">
         <label className="modal-box relative bg-white" htmlFor="">
-          <h1 className="text-center text-neutral font-bold text-4xl lg:text-5xl font-mono">
+          <h1 className="text-center text-neutral font-bold text-4xl lg:text-5xl font-sans">
             Login
           </h1>
           <LoginForm where={[""]} />
         </label>
       </label>
       <div className="mt-12">
-        <h1 className="text-center text-neutral font-bold text-4xl lg:text-5xl mb-14 font-mono">
+        <h1 className="text-center text-neutral font-bold text-4xl lg:text-5xl mb-14 font-sans">
           Reviews
         </h1>
         {/* showing reviews */}

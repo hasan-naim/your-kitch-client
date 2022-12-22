@@ -13,7 +13,7 @@ function Banner() {
               alt=""
             />
           </div>
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center font-mono">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center font-sans">
             <h1 className="text-white text-xl sm:text-2xl md:text-4xl lg:text-xl xl:text-6xl font-bold">
               Welcome to Your Own Kitchen
             </h1>

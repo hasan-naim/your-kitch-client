@@ -8,25 +8,29 @@ import { ToastContainer } from "react-toastify";
 import { PhotoProvider } from "react-photo-view";
 import "react-photo-view/dist/react-photo-view.css";
 import "react-toastify/dist/ReactToastify.css";
+import { HelmetProvider } from "react-helmet-async";
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <AuthProvider>
-      <PhotoProvider>
-        <App />
-        <ToastContainer
-          position="top-center"
-          autoClose={5000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme="light"
-        />{" "}
-      </PhotoProvider>
+      <HelmetProvider>
+        <PhotoProvider>
+          <App />
+          <ToastContainer
+            position="top-center"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="light"
+          />{" "}
+        </PhotoProvider>
+      </HelmetProvider>
     </AuthProvider>
   </React.StrictMode>
 );

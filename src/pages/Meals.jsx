@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import MealCard from "../components/MealCard/MealCard";
 import axios from "axios";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 function Meals() {
   const [loading, setLoading] = useState(true);
   const [meals, setMeals] = useState([]);
@@ -27,7 +27,7 @@ function Meals() {
 
       <div className="container">
         <div className="mt-12">
-          <h1 className="text-center text-neutral font-bold text-4xl lg:text-5xl mb-14 font-mono">
+          <h1 className="text-center text-neutral font-bold text-4xl lg:text-5xl mb-14 font-sans">
             Meals
           </h1>
           {loading ? (

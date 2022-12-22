@@ -5,7 +5,7 @@ import githublogo from "../../assets/socials/github.png";
 
 function Footer() {
   return (
-    <div className="bg-gray-700">
+    <div className="bg-white">
       <div className="container">
         <footer className="footer p-10 text-base-content">
           <div>

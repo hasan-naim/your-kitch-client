@@ -5,7 +5,7 @@ function FAQ() {
     <div>
       <div className="py-12">
         <div className="container overflow-hidden">
-          <h1 className="text-center text-neutral font-bold text-4xl lg:text-5xl mb-14 font-mono">
+          <h1 className="text-center text-neutral font-bold text-4xl lg:text-5xl mb-14 font-sans">
             Contact Us
           </h1>
           <div className="grid lg:grid-cols-2 text-white max-w-full">

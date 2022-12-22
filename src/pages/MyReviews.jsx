@@ -4,7 +4,7 @@ import { useContext } from "react";
 import { AuthContext } from "../Contexts/AuthProvider";
 import { toast } from "react-toastify";
 import ReviewCard from "../components/ReviewCard/ReviewCard";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 function MyReviews() {
   const [reviews, setReviews] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -114,7 +114,7 @@ function MyReviews() {
           >
             ✕
           </label>
-          <h1 className="text-center text-neutral font-bold text-4xl lg:text-5xl font-mono">
+          <h1 className="text-center text-neutral font-bold text-4xl lg:text-5xl font-sans">
             Edit
           </h1>
 
@@ -202,7 +202,7 @@ function MyReviews() {
       <div className="pt-12">
         <div className="container">
           <div className="mt-12">
-            <h1 className="text-center text-neutral font-bold text-4xl lg:text-5xl mb-14 font-mono">
+            <h1 className="text-center text-neutral font-bold text-4xl lg:text-5xl mb-14 font-sans">
               My Reviews
             </h1>
             {loading ? (

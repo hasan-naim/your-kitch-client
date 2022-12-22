@@ -15,7 +15,7 @@ function MealCard({ meal }) {
             />
           </PhotoView>
         </div>
-        <div className="p-5 bg-white rounded-b-lg">
+        <div className="p-5 bg-white rounded-b-lg text-center">
           <h5 className="mb-2 text-2xl font-bold tracking-tigh">{title}</h5>
 
           <p className="mb-2 font-normal text-gray-700">

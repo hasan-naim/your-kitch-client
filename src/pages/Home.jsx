@@ -3,7 +3,7 @@ import AboutUs from "../components/AboutUs/AboutUs";
 import Banner from "../components/Banner/Banner";
 import ContactUs from "../components/ContactUs/ContactUs";
 import MealsSection from "../components/MealsSection/MealsSection";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 function Home() {
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });

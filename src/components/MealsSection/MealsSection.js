@@ -21,7 +21,7 @@ function MealsSection() {
   return (
     <div className="my-20">
       <div className="container">
-        <h1 className="text-center text-neutral font-bold text-4xl lg:text-5xl mb-14 font-mono">
+        <h1 className="text-center text-neutral font-bold text-4xl lg:text-5xl mb-14 font-sans">
           Meals
         </h1>
 

@@ -22,7 +22,13 @@ function Navbar() {
         <Link to={"/addmeal"}>Add Meal</Link>
       </li>
       <li>
-        <Link to={"/blog"}>Blog</Link>
+        <a
+          target={"_blank"}
+          rel="noreferrer"
+          href="https://hasan-naim.netlify.app/"
+        >
+          Portfolio
+        </a>
       </li>
     </>
   );
@@ -69,7 +75,7 @@ function Navbar() {
               className="translate-y-0 flex items-center duration-300 h-full ml-3 lg:ml-0 hover:bg-white hover:-translate-y-2 hover:cursor-pointer normal-case text-xl"
             >
               <img className="w-6 sm:w-10 mr-2 md:mr-2" src={logo} alt="" />
-              <h1 className="text-sm sm:text-xl cursor-pointer font-bold md:text-3xl lg:text-3xl font-mono">
+              <h1 className="text-xs sm:text-2xl cursor-pointer font-bold md:text-2xl lg:text-2xl font-sans">
                 Your Kitch
               </h1>
             </Link>
@@ -84,7 +90,7 @@ function Navbar() {
                   <>
                     <div className="avatar">
                       <div className="w-8 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-                        <img src={user.photoURL} alt="profile" />
+                        <img src={user?.photoURL} alt="profile" />
                       </div>
                     </div>
                   </>

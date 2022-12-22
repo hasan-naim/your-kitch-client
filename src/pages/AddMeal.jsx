@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 
 function AddMeal() {
   const [inputText, setInputText] = useState({
@@ -44,7 +44,7 @@ function AddMeal() {
       </Helmet>
       <div className="container">
         <div className="w-full max-w-lg bg-white rounded-lg mx-auto p-12">
-          <h1 className="text-center text-neutral font-bold text-4xl lg:text-5xl mb-8 font-mono">
+          <h1 className="text-center text-neutral font-bold text-4xl lg:text-5xl mb-8 font-sans">
             Add Meal
           </h1>
           <form onSubmit={handleSubmit}>
